@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Ionic Blank
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-input type="text" placeholder="QR code data" [(ngModel)]="qrData"> </ion-input>
+    </ion-item>
+    <ion-segment [(ngModel)]="elementType">
+        <ion-segment-button value="img">
+            <ion-label>Image</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="canvas">
+            <ion-label>Canvas</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="url">
+            <ion-label>Url</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <div class="ion-padding" style="text-align: center;">
+        <ngx-qrcode [(qrc-value)]="qrData" [qrc-element-type]="elementType"> </ngx-qrcode>
+        <ion-button (click)="scanCode()">Scan code</ion-button>
+    </div>
+
+    <ion-card *ngIf="scannedCode">
+        <ion-card-content> Result from scanned: {{ scannedCode }} </ion-card-content>
+    </ion-card>
+</ion-content>
